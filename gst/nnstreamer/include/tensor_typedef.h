@@ -164,7 +164,8 @@ typedef enum _nns_media_type
 typedef enum _tensor_format
 {
   _NNS_TENSOR_FORMAT_STATIC = 0,
-  _NNS_TENSOR_FORMAT_FLEXIBLE
+  _NNS_TENSOR_FORMAT_FLEXIBLE,
+  _NNS_TENSOR_FORMAT_SPARSE
 } tensor_format;
 
 /**
@@ -240,6 +241,22 @@ typedef struct
 } GstTensorsConfig;
 
 /**
+ * @brief Internal data structure for sparse tensor info
+ */
+typedef struct
+{
+  uint32_t nnz; /**< the number of "non-zero" elements */
+} GstSparseTensorInfo;
+
+/**
+ * @brief Internal data structure for tensor query (TBU)
+ */
+typedef struct
+{
+  /* TBU */
+} GstTensorQueryInfo;
+
+/**
  * @brief Data structure to describe a tensor data.
  * This represents the basic information of a memory block for tensor stream.
  *
@@ -257,6 +274,16 @@ typedef struct
   uint32_t dimension[NNS_TENSOR_META_RANK_LIMIT];
   uint32_t format;
   uint32_t media_type;
+
+  /**
+   * @brief Union of the required information for processing each tensor "format".
+   * @todo Implement "tensor-query"
+   */
+  union {
+    GstSparseTensorInfo sparse_info;
+    GstTensorQueryInfo query_info;
+  };
+
 } GstTensorMetaInfo;
 
 #endif /*__GST_TENSOR_TYPEDEF_H__*/
