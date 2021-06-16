@@ -1659,6 +1659,17 @@ gst_tensor_meta_info_parse_header (GstTensorMetaInfo * meta, gpointer header)
   meta->format = val[18];
   meta->media_type = val[19];
 
+  switch ((tensor_format) meta->format) {
+    /** @todo set other format related data */
+    /** This should be _NNS_TENSOR_FORMAT_SPARSE !!!*/
+    case _NNS_TENSOR_FORMAT_FLEXIBLE:
+      meta->sparse_info.nnz = val[20];
+      break;
+    default:
+      break;
+  }
+
+
   /** @todo update meta info for each version */
   return gst_tensor_meta_info_validate (meta);
 }

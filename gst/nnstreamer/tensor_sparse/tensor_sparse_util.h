@@ -16,7 +16,7 @@
 #define __GST_TENSOR_SPARSE_UTIL_H__
 
 #include <gst/gst.h>
-#include <tensor_common.h>
+#include <tensor_typedef.h>
 
 /**
  * @brief NYI. Make dense tensor with input sparse tensor.
@@ -25,8 +25,9 @@
  * @param[out] out pointer of output dense tensor data. Assume that it's already allocated.
  * @return TRUE if no error
  */
-extern gboolean
-gst_tensor_sparse_to_dense (GstTensorMetaInfo * meta, gpointer in, gpointer out);
+extern GstMemory *
+// gst_tensor_sparse_to_dense (GstMemory * in, GstTensorMetaInfo * meta);
+gst_tensor_sparse_to_dense (GstTensorMetaInfo * meta, gpointer in);
 
 /**
  * @brief NYI. Make sparse tensor with input dense tensor.
@@ -35,7 +36,7 @@ gst_tensor_sparse_to_dense (GstTensorMetaInfo * meta, gpointer in, gpointer out)
  * @param[out] out pointer of output sparse tensor data. Assume that it's already allocated.
  * @param TRUE if no error
  */
-extern gboolean
-gst_tensor_sparse_from_dense (GstTensorMetaInfo * meta, gpointer in, gpointer out);
+extern GstMemory *
+gst_tensor_sparse_from_dense (GstTensorMetaInfo * meta, gpointer in);
 
 #endif /* __GST_TENSOR_SPARSE_UTIL_H__ */
