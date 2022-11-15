@@ -12,7 +12,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
     - name: homebrew
       run: brew install cask && brew update
     - name: install minimal requirements
