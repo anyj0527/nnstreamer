@@ -23,6 +23,6 @@ jobs:
             uname -a
             echo ::set-output name=uname::$(uname -a)
             apk update
-            apk add meson ninja glib-dev gstreamer-dev gst-plugins-base-dev gcc g++ bash python3 lua-dev
+            apk add meson ninja glib-dev gstreamer-dev gst-plugins-base-dev gcc g++ bash python3 lua-dev gtest-dev
             meson build
             ninja -C build test
