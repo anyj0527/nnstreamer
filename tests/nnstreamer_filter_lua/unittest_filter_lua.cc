@@ -461,6 +461,7 @@ TEST (nnstreamerFilterLua, invoke00_n)
  */
 TEST (nnstreamerFilterLua, invoke01_n)
 {
+  testing::FLAGS_gtest_death_test_style = "threadsafe";
   int ret;
   void *data = NULL;
   GstTensorMemory input, output;
@@ -486,8 +487,8 @@ TEST (nnstreamerFilterLua, invoke01_n)
   ((float *) input.data)[0] = 10.0;
 
   /* catching assertion error */
-  EXPECT_DEATH (sp->invoke (NULL, NULL, data, NULL, &output), "");
-  EXPECT_DEATH (sp->invoke (NULL, NULL, data, &input, NULL), "");
+  EXPECT_DEATH_IF_SUPPORTED (sp->invoke (NULL, NULL, data, NULL, &output), "");
+  EXPECT_DEATH_IF_SUPPORTED (sp->invoke (NULL, NULL, data, &input, NULL), "");
 
   g_free (input.data);
   g_free (output.data);
