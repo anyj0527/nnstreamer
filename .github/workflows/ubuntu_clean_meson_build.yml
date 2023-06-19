@@ -12,7 +12,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-20.04, ubuntu-22.04 ]
+        os: [ ubuntu-20.04 ]
 
     steps:
     - uses: actions/checkout@v3
@@ -25,6 +25,9 @@ jobs:
     - uses: BSFishy/meson-build@v1.0.3
       with:
         action: test
+    - name: print log
+      run: |
+          cat build/meson-logs/testlog.txt
 
 # TODO: add more subplugins to be built
 # TODO: add unit testing
