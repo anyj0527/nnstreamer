@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_job:
-    runs-on: ubuntu-20.04
+    runs-on:
     name: Build on alpine RISC-V
     steps:
       - uses: actions/checkout@v2.1.0

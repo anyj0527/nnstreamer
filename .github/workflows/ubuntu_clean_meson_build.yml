@@ -25,6 +25,12 @@ jobs:
     - uses: BSFishy/meson-build@v1.0.3
       with:
         action: test
+    - name: Persist logs
+      if: ${{ failure() }}
+      run: |
+        cat nnstreamer/build/meson-logs/testlog.txt
+      shell: bash
+
 
 # TODO: add more subplugins to be built
 # TODO: add unit testing
