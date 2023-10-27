@@ -21,10 +21,11 @@ jobs:
       run: |
           sudo apt-get update && \
           sudo apt-get install -y libglib2.0-dev libjson-glib-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libunwind-dev googletest \
-            gstreamer1.0-plugins-good
+            gstreamer1.0-plugins-good meson ninja-build
     - uses: BSFishy/meson-build@v1.0.3
       with:
         action: test
+        options: --verbose
 
 # TODO: add more subplugins to be built
 # TODO: add unit testing
