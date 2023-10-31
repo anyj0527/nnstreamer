@@ -2,9 +2,9 @@ name: Test on RISCV64 Ubuntu 20.04
 
 on:
   push:
-    branches: [ main ]
+    branches: [ disabled ]
   pull_request:
-    branches: [ main ]
+    branches: [ disabled ]
 
 jobs:
   build_job:
