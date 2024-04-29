@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-13
 
     steps:
     - uses: actions/checkout@v4
@@ -21,7 +21,7 @@ jobs:
         rebuild=`bash .github/workflows/check_if_rebuild_requires.sh ${tmpfile} rebuild | grep "REBUILD=YES" | wc -l`
         echo "Rebuild required: ${rebuild}"
         echo "rebuild=${rebuild}" >> "$GITHUB_ENV"
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v1
     - name: homebrew
       if: env.rebuild == '1'
       run: |
