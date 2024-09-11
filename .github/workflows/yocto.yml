@@ -1,4 +1,4 @@
-name: Build test/ Yocto 4.0.15
+name: Build test / Yocto 4.0.20 (kirkstone-4.0.20)
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: Build with Yocto devtool on Ubuntu
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
       with:
@@ -23,18 +23,12 @@ jobs:
       run: |
         echo "::group::apt-get install"
         sudo apt-get update
-        sudo apt-get install sudo curl diffstat python2.7 locales bash-completion qemu gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 xterm python3-subunit mesa-common-dev gzip libglib2.0-dev libjson-glib-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libunwind-dev googletest liborc-0.4-dev flex bison libopencv-dev pkg-config python3-dev python3-numpy git
-        sudo ln -sf python2.7 /usr/bin/python
+        sudo apt install gawk wget git diffstat unzip texinfo gcc build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git python3-jinja2 python3-subunit zstd liblz4-tool file locales libacl1
         echo "::endgroup::"
         echo "::group::Locale Setup"
-        sudo dpkg-reconfigure locales
-        sudo locale-gen "en_US.UTF-8"
-        sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
-        export LC_ALL=en_US.UTF-8
-        export LANG=en_US.UTF-8
-        export LANGUAGE=en_US:en
-        locale
+        sudo locale-gen en_US.UTF-8
         echo "::endgroup::"
+        echo "::group::"
         echo "::group::eSDK install"
         ## @todo Find a way to cache this.
         if [[ -f ~/poky_sdk/environment-setup-cortexa57-poky-linux ]]; then
