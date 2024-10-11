@@ -12,7 +12,7 @@ project('nnstreamer', 'c', 'cpp',
     'cpp_std=c++17'
   ]
 )
-
+warning('asldkfhlkasdfhlkafsh')
 add_project_arguments('-DVERSION="' + meson.project_version() + '"', language: ['c', 'cpp'])
 version_split = meson.project_version().split('.')
 add_project_arguments('-DVERSION_MAJOR="' + version_split[0] + '"', language: ['c', 'cpp'])
